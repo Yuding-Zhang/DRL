@@ -8,11 +8,11 @@ import numpy as np
 import os
 import pickle
 
-from agents.td7 import TD7
-from agents.td3 import TD3
-from agents.ddpg import DDPG
-from agents.ppo import PPO
-from agents.sac import SAC
+from algorithms.td7 import TD7
+from algorithms.td3 import TD3
+from algorithms.ddpg import DDPG
+from algorithms.ppo import PPO
+from algorithms.sac import SAC
 
 from utils.utils import make_transition, Dict, RunningMeanStd
 
@@ -24,16 +24,16 @@ parser = ArgumentParser('parameters')
 parser.add_argument("--env_name", type=str, default='BipedalWalker-v3', help="'Ant-v2','HalfCheetah-v2','Hopper-v2','Humanoid-v2','HumanoidStandup-v2',\
           'InvertedDoublePendulum-v2', 'InvertedPendulum-v2' (default : Hopper-v2)")
 parser.add_argument("--algo", type=str, default='ppo', help='algorithm to adjust (default : ddpg)')
-parser.add_argument('--train', type=bool, default=True, help="(default: True)")
-parser.add_argument('--render', type=bool, default=False, help="(default: False)")
+parser.add_argument('--train', type=bool, default=False, help="(default: True)")
+parser.add_argument('--render', type=bool, default=True, help="(default: False)")
 parser.add_argument('--epochs', type=int, default=5000, help='number of epochs, (default: 1000)')
 parser.add_argument('--tensorboard', type=bool, default=False, help='use_tensorboard, (default: False)')
-parser.add_argument("--load", type=str, default='no', help='load network name in ./model_weights')
+parser.add_argument("--load", type=str, default='ppo_agent_4000.pt', help='load network name in ./model_weights')
 parser.add_argument("--save_interval", type=int, default=1000, help='save interval(default: 100)')
 parser.add_argument("--print_interval", type=int, default=20, help='print interval(default : 20)')
 parser.add_argument("--use_cuda", type=bool, default=False, help='cuda usage(default : True)')
 parser.add_argument("--reward_scaling", type=float, default=0.1, help='reward scaling(default : 0.1)')
-parser.add_argument("--draw_picture", type=float, default=True, help='draw reward data picture (default : True)')
+parser.add_argument("--draw_picture", type=float, default=False, help='draw reward data picture (default : True)')
 args = parser.parse_args()
 parser = ConfigParser()
 parser.read('config.ini')
